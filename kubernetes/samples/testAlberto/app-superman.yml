@@ -1,0 +1,18 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: superman-DP
+  namespace: proyecto1
+spec:
+  selector:
+    matchLabels:
+      app: superman
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        app: superman
+    spec:
+      containers:
+        - name: superman
+          image: nginxinc/nginx-unprivileged

@@ -33,5 +33,10 @@ oc whoami -t ### Obtener token
 oc adm top node -l node-role.kubernetes.io/worker
 oc get pod -n <project_name>
 oc adm node-logs --tail 3 -u kubelet ip-10-0-140-84.us-west-1.compute.internal
+```
 
+COMANDOS SUELTOS
+```
+# Ejecutar nginx dentro de un pod
+command: ["sh", "-c", "echo VERSION 1.0 desde $HOSTNAME > /usr/share/nginx/html/index.html && nginx -g 'daemon off;'"]
 ```
