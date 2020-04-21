@@ -1,4 +1,4 @@
-# Instalar Kubernetes
+# Instalar Kubectl
 
 ## CENTOS 8
 ```
