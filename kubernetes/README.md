@@ -1,6 +1,6 @@
 # Comandos Kubernetes
 
-##MAIN:
+## MAIN:
 
 ```
 # Ver nodos
