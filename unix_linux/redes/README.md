@@ -3,9 +3,8 @@
 ## MAIN:
 
 ```
-# Ver tabla de rutas `Kernel IP routing table`
+# Ver tabla de rutas Kernel IP routing table
 netstat -rn
-
 Kernel IP routing table
 Destination     Gateway         Genmask         Flags   MSS Window  irtt Iface
 0.0.0.0         10.0.2.2        0.0.0.0         UG        0 0          0 enp0s3
