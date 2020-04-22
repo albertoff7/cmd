@@ -30,10 +30,12 @@ kubectl get namespaces
 
 ## CONTEXTOS
 
-#Establecer la preferencia de espacio de nombres. Indicar de forma permanente el namespace para llamadas futuras con kubectl. También se podría crear un contexto, para lo cual hay que indicar cluster, usuario etc.
+# Establecer la preferencia de espacio de nombres. 
+# Indicar de forma permanente el namespace para llamadas futuras con kubectl.
 kubectl config set-context --current --namespace=<insert-namespace-name-here>
 kubectl config view | grep namespace:
 
+# También se podría crear un contexto, para lo cual hay que indicar cluster, usuario etc.
 # Si creaste un contexto, para cambiar a el ejecuta
 kubectl config use-context contexto_xxx
 
