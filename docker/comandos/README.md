@@ -12,7 +12,9 @@ mv docker-compose /usr/bin && chmod +x /usr/bin/docker-compose
 
 ## Comandos Docker
 ```
-#Crear contenedor con utilizando red del host
+# Crear contenedor con utilizando red del host
 docker build --network host -t <tag_name:v1.0> .
 
+# Ver la IP de un contenedor
+podman inspect -f "{{.NetworkSettings.IPAddress}}" nginx 
 ```
