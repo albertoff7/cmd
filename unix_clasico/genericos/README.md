@@ -13,4 +13,17 @@ ec2-user  5436  0.0  0.0  23256  3616 pts/1    Ss   17:12   0:00  |       \_ -ba
 root      5973  0.0  0.1 135232  7140 pts/1    S    17:12   0:00  |           \_ sudo -i
 root      5975  0.0  0.1  25484  4044 pts/1    S    17:12   0:00  |               \_ -bash
 root     14064  0.0  1.6 641852 64992 pts/1    Sl+  17:41   0:00  |                   \_ docker logs kimai2_kimai_1 -f
+
+# Encontrar procesos que más consumo tienen en linux
+ps -eo pid,ppid,cmd,%mem,%cpu --sort=-%mem | head
+  PID  PPID CMD                         %MEM %CPU
+ 5562  5550 /usr/lib/jvm/java-7-openjdk 24.7  3.1
+ 5550  5523 java -jar /usr/local/glassf 10.1  0.2
+ 1822     1 /usr/bin/dockerd -H fd:// -  6.6  0.1
+ 1433     1 /usr/bin/containerd          2.9  0.0
+ 1107     1 /usr/libexec/platform-pytho  2.5  0.0
+ 1420     1 /usr/libexec/platform-pytho  2.0  0.0
+ 1421     1 /usr/sbin/libvirtd           1.3  0.0
+ 5834  1828 sshd: ec2-user [priv]        1.1  0.2
+ 1464  1419 /usr/sbin/httpd -DFOREGROUN  1.1  0.0
 ```
