@@ -14,4 +14,5 @@ Destination     Gateway         Genmask         Flags   MSS Window  irtt Iface
 
 # Como ver la IP publica de mi server desde consola bash
 dig TXT +short o-o.myaddr.l.google.com @ns1.google.com | awk -F'"' '{ print $2}'
+
 ```
