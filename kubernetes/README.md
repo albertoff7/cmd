@@ -48,7 +48,7 @@ kubectl create namespaces test
 ```
 
 ### Certificados (creacion de usuarios para un cluster kubernetes)
-```bash
+```sh
 # Generar llaves y firma
 openssl genrsa -out alberto.key 2048
 openssl req -new -key alberto.key -out alberto.csr -subj "/CN=alberto/O=grupo1"
