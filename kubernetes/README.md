@@ -46,3 +46,22 @@ kubectl get pods -n namespace_xxx
 # Crear namespaces
 kubectl create namespaces test
 ```
+
+### Certificados (creacion de usuarios para un cluster kubernetes)
+```
+# Generar llaves y firma
+openssl genrsa -out alberto.key 2048
+openssl req -new -key alberto.key -out alberto.csr -subj "/CN=alberto/O=grupo1"
+openssl x509 -req -in alberto.csr -CA /root/.minikube/ca.crt -CAkey /root/.minikube/ca.key -CAcreateserial -out alberto.crt -days 500
+openssl x509 -in alberto.crt -noout -text
+
+# Isolated env
+kubectl config view|grep server
+docker run -rm -ti -v $PWD:/test -w /test -v /root/.minikube/ca.crt:/ca.crt -v /usr/bin/kubectl:/usr/bin/kubectl alpine sh
+
+# Configurar kubectl para el usuario
+kubectl config set-cluster minikube --server=https://192.168.1.140:8443 --certificate-authority=/ca.crt
+kubectl config set-credentials alberto --client-certificate=alberto.crt --client-key=alberto.key
+kubectl config set-context alberto --cluster=minikube --user=alberto
+kubectl config use-context alberto
+```
