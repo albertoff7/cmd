@@ -24,4 +24,7 @@ docker system prune --volumes
 
 # Borrar todos los contenedores // cuidado!!
 docker rm -f $(docker ps -a -q)
+
+# Correr un contenedor efimero
+docker run -it -rm registry.access.redhat.com/ubi8/ubi:latest bash
 ```

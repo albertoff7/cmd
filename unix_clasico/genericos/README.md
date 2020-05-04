@@ -31,4 +31,7 @@ ps -eo pid,ppid,cmd,%mem,%cpu --sort=-%mem | head
 echo 1 > /proc/sys/vm/drop_caches
 echo 2 > /proc/sys/vm/drop_caches
 echo 3 > /proc/sys/vm/drop_caches
+
+# Tracear ejecución de un comando
+strace -eopenat kubectl version
 ```
