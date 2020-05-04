@@ -26,4 +26,9 @@ ps -eo pid,ppid,cmd,%mem,%cpu --sort=-%mem | head
  1421     1 /usr/sbin/libvirtd           1.3  0.0
  5834  1828 sshd: ec2-user [priv]        1.1  0.2
  1464  1419 /usr/sbin/httpd -DFOREGROUN  1.1  0.0
+
+# Limpiar la cache en un sistema linux. Cuidado REVISAR casos de uso!!
+echo 1 > /proc/sys/vm/drop_caches
+echo 2 > /proc/sys/vm/drop_caches
+echo 3 > /proc/sys/vm/drop_caches
 ```

@@ -20,6 +20,9 @@ kubectl apply -f ejemplo1_nginx.yml
 
 # Obtener servicios con label front
 kubectl get svc -l app=front
+
+# Ver si RBAC esta habilitado
+kubectl cluster-info dump |grep authorization-mode
 ```
 
 ### Namespaces
@@ -52,6 +55,8 @@ kubectl create namespaces test
 # Generar llaves y firma
 openssl genrsa -out alberto.key 2048
 openssl req -new -key alberto.key -out alberto.csr -subj "/CN=alberto/O=grupo1"
+# Para identificar donde está el CA en el cluster kubernetes
+kubectl config view|grep certificate-auth
 openssl x509 -req -in alberto.csr -CA /root/.minikube/ca.crt -CAkey /root/.minikube/ca.key -CAcreateserial -out alberto.crt -days 500
 openssl x509 -in alberto.crt -noout -text
 

@@ -17,4 +17,11 @@ docker build --network host -t <tag_name:v1.0> .
 
 # Ver la IP de un contenedor
 podman inspect -f "{{.NetworkSettings.IPAddress}}" nginx 
+
+# Vaciar sistema de volumenes e imagenes obsoletas
+docker system prune --all
+docker system prune --volumes
+
+# Borrar todos los contenedores // cuidado!!
+docker rm -f $(docker ps -a -q)
 ```
