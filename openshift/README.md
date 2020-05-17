@@ -108,14 +108,69 @@ oc scale --replicas=3 dc blog
 # Borrar un pod
 oc delete pod blog-1-g89rd
 
+# Borrar objetos en base a un selector
+oc delete all -o name -l app=blog
+
+# Crear app utilizando dockerfile
+oc new-app --name blog3 --strategy=docker https://github.com/apasofttraining/blog
+
+# Editar un DeploymentConfig
+oc edit dc ejemplo1
+
+# Recuperar variables de un pod o dc
+oc set env dc/ejemplo1 --list
+
+# Agregar variables a un dc
+oc set env dc/ejemplo1 RESPONSABLE=pedro
+
+# Sobreescribir variable
+oc set env dc/ejemplo1 --overwrite RESPONSABLE=Ramon
+
+# Eliminar variable desde linea de comandos
+oc set env dc/ejemplo RESPONSABLE-
+
+# Crear configMap desde linea de comandos
+oc create configmap cf1 --from-literal=usuario=usu1 --from-literal=password=secret
+
+# Crear configMap desde archivo de texto
+ARCHIVO.env
+VAR1=Valor1
+VAR2=Valor2
+
+oc create configmap postgres-cm --from-env-file ARCHIVO.env
+
+# Crear recurso desde github en una linea (onliner)
+curl -kL https://github.com/sample/sampleRecurse/raw 2>/dev/null | oc apply -n openshift --as system:admin -f -
+
+# Ver imagenes de openshift
+oc adm top images
+
+# Entrar dentro del contenedor
+oc exec -it c1-w42mj bash
+
+# Importar una imagen a un repositorio interno
+oc import-image odoo:13
+
+# Etiquetar una imagen de un repositorio externo
+oc tag docker.io/odoo:12 odoo:12
+
 ```
 
 TERMINOLOGIA
 ```
 # Proyectos: Un namespace de kubernetes en el que también entran objetos de openshift como rutas, DC, BC, etc.
 # Pod: Objeto mínimo para desplegar un contenedor
-# Imagestream: Directorio de imagenes apunta a diferentes versiones de las imagenes que queremos desplegar. Ventaja: al cambiar la imagen, se puede actualizar de una forma automática. 
-# DeploymentConfig: Objeto que crea un ReplicationControler que se encarga de mantener las replicas indicadas de un determinado pod (en base a una imagen de nuestra aplicación)
-
+# Imagestream: Directorio de imagenes apunta a diferentes versiones de las imagenes que queremos desplegar. 
+  Ventaja: al cambiar la imagen, se puede actualizar de una forma automática. 
+# DeploymentConfig: Objeto que crea un ReplicationControler que se encarga de mantener las replicas indicadas
+  de un determinado pod (en base a una imagen de nuestra aplicación).
+  La diferencia con un Deployment (kubernetes) es que DC es innovador y tiene ampliada la funcionalidad (desencadenantes)
+  pero no ha sido aceptado para sustituir a Deployment por la comunidad Opensource del proyecto, por lo que crear un
+  Deployment en vez de un DC nos daría una mayor portabilidad para el futuro.
+# ImageBuilder: Constructor de imagen que utiliza un lenguaje de programacion predeterminado para construir nuestra app.
+  Existen ImageBuilder por defecto para muchos lenguajes como ruby, php, python, java, etc. También podemos crearlos nosotros.
+# BuildConfig: Configuracion de construccion de la imagen basada en el ImageBuilder y el codigo fuente de la app.
+# ImageStreamTag: Son diferentes versiones de un ImagenStream.
+# ImageStream: Intermediario entre pod e imagen real.
 
 ```
