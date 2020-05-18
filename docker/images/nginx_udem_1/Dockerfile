@@ -1,5 +1,7 @@
 FROM centos:7
 
+USER root
+
 COPY . /tmp/build/inputs
 
 COPY ./conf/nginx.repo /etc/yum.repos.d/nginx.repo
