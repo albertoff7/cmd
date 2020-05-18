@@ -1,10 +1,6 @@
 FROM centos:7
 
-USER root
-
-COPY . /tmp/build/inputs
-
-COPY /tmp/build/inputs/conf/nginx.repo /etc/yum.repos.d/nginx.repo
+COPY ./conf/nginx.repo /etc/yum.repos.d/nginx.repo
 
 RUN                                                                          \
   yum -y install nginx --enablerepo=nginx                                 && \
